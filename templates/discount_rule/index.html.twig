@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des expressions{% endblock %}
+
+{% block body %}
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Expression</th>
+        <th scope="col">Pourcentage de réduction</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for discount_rule in discount_rules %}
+        <tr>
+          <td>{{ discount_rule.id }}</td>
+          <td>{{ discount_rule.ruleExpression }}</td>
+          <td>{{ discount_rule.discountPercent }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  
+  </table>
+  {# <a class="btn btn-primary" href="{{ path('discount_rule_new') }}">Création d'une nouvelle règle</a> #}
+{% endblock %}

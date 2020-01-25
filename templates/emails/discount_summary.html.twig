@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+  {% if products is empty %}
+    <h3>Aucun produit mis à jour</h3>
+  {% else %}
+
+    <h3>Liste des produits mis à jour</h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nom</th>
+          <th>Type</th>
+          <th>Prix original</th>
+          <th>Prix discounted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          <tr>
+            <td>{{ product.Id }}</td>
+            <td>{{ product.Name }}</td>
+            <td>{{ product.Type }}</td>
+            <td> {{ product.price }}  euros</td>
+            <td>{{ product.discountedPrice }} euros</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  {% endif %}
+
+{% endblock %}

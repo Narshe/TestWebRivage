@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+
+  <div class="form-group">
+    {{ form_label(form.rule_expression) }}
+    {{ form_widget(form.rule_expression, {attr: {class: 'form-control'} }) }}
+    <div class="form-error">
+      {{ form_errors(form.rule_expression) }}
+    </div>
+  </div>
+   <div class="form-group">
+    {{ form_label(form.discount_percent) }}
+    {{ form_widget(form.discount_percent, {attr: {class: 'form-control'} }) }}
+    <div class="form-error">
+      {{ form_errors(form.discount_percent) }}
+    </div>
+  </div>
+   <div class="form-group">
+    <button type="submit" class="btn btn-primary">{{ button }}</button>
+  </div>
+
+{{ form_end(form) }}

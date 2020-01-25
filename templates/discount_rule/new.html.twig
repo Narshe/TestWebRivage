@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une expression{% endblock %}
+
+{% block body %}
+  
+  {% include 'discount_rule/_form.html.twig' with {'form': discount_form, 'button': 'Enregistrer'} %}
+{% endblock %}
