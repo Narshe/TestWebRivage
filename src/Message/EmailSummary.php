@@ -12,7 +12,7 @@ class EmailSummary
     /**
      * @var string $message
      */
-    private $message;
+    private $adminEmail;
 
     /**
      * @param array $discounted_products

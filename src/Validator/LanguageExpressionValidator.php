@@ -10,6 +10,10 @@ use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class LanguageExpressionValidator extends ConstraintValidator
 {
+    /**
+     * @param mixed $value
+     * @param Contraint $constraint
+     */
     public function validate($value, Constraint $constraint)
     {
         /* @var $constraint \App\Validator\LanguageExpression */

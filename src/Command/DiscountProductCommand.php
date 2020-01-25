@@ -36,16 +36,18 @@ class DiscountProductCommand extends Command
     protected function configure()
     {
         $this
-           // ->addArgument('email', InputArgument::OPTIONAL, 'Email Adress.')
             ->setDescription('Apply discount percent for the products according to some rules.')
-            ->setHelp('This command allows you to update discounted product...')
             ->addOption('email', null, InputOption::VALUE_OPTIONAL, 'Admin email adress', 'admin@example.com')
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
         $adminEmail = $input->getOption('email');
 
         $products = new ArrayCollection($this->doctrine->getRepository(Product::class)->findAll());
@@ -70,7 +72,6 @@ class DiscountProductCommand extends Command
                     if($p->getDiscountedPrice() > $calc) {
                         $p->setDiscountedPrice($calc);
                     }
-
                     continue;
                 }
 
@@ -78,14 +79,10 @@ class DiscountProductCommand extends Command
                 $em->persist($p);
                 $this->updated_product->add($p);
             }
-         
-
         }
         
         $em->flush();
-
         $this->bus->dispatch(new EmailSummary($this->updated_product->toArray(), $adminEmail));
-
         $output->writeln("Les produits ont bien été mis à jour, un récapitulatif a été envoyé à {$adminEmail}");
 
         return 0;

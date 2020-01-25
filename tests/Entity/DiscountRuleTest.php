@@ -64,6 +64,9 @@ class DiscountRuleTest extends KernelTestCase
     public function provideValidationData(): array
     {
         return [
+            /**
+             * @var array [$rule_expression, $discount_percent, $expected_errors, $message]
+             */
             ['', 0, 2, "RuleExpression and DiscountPercent empty"],
             ['product.type == \'HiFi\' and product.price >= 1000', 30, 0, "Entity Valide"],
             ['ezadzaaz', 20, 1, "RuleExpression invalide"],
