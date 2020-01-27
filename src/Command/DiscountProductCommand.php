@@ -52,6 +52,12 @@ class DiscountProductCommand extends Command
 
         $products = new ArrayCollection($this->doctrine->getRepository(Product::class)->findAll());
         $discountRules = $this->doctrine->getRepository(DiscountRule::class)->findAll();
+        
+        if (empty($products) || empty($discountRules)) {
+            $output->writeln("Aucun produit ou aucune expression n'a été trouvé, veuillez contacter l'administrateur pour plus d'information");
+            return 0;
+        }
+
         $em = $this->doctrine->getManager();
         $exprLanguage = new ExpressionLanguage();
 

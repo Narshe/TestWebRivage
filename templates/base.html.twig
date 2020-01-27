@@ -25,6 +25,12 @@
   </nav>
 
   <main role="main" class="container" style="margin-top:6rem;">
+  
+    <div class="row">
+      <div class="col-12">
+        {% include 'partials/_flash.html.twig' %}
+      </div>
+    </div>
 
     {% block body %}{% endblock %}
     

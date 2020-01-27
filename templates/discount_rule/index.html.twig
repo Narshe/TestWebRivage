@@ -10,6 +10,7 @@
         <th scope="col">Id</th>
         <th scope="col">Expression</th>
         <th scope="col">Pourcentage de réduction</th>
+        <th scope="col">Options</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
           <td>{{ discount_rule.id }}</td>
           <td>{{ discount_rule.ruleExpression }}</td>
           <td>{{ discount_rule.discountPercent }}</td>
+          <td> {% include 'discount_rule/_deleteForm.html.twig' with {'discountRule': discount_rule.id, 'button': 'Supprimer'} %}</td>
         </tr>
       {% endfor %}
     </tbody>

@@ -38,4 +38,21 @@ class DiscountRuleControllerTest extends WebTestCase
         $this->assertSelectorTextContains('table', 'product.type == \'HiFi\' and product.price >= 1000');    
 
     }
+
+    public function testUserCanDeleteDiscountRule()
+    {
+        $this->loadFixtures([DiscountRuleFixtures::class]);
+
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/discount/rule');
+
+        $this->assertEquals(3, $crawler->filter('tbody tr')->count());
+
+        $crawler = $client->submitForm('Supprimer');
+        $crawler = $client->followRedirect();
+
+        $this->assertEquals(2, $crawler->filter('tbody tr')->count());
+
+    }
 }
